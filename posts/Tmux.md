@@ -1,6 +1,6 @@
 ---
-title: 'How to use Tmux'
-date: '2021-04-17'
+title: 'An introduction to Tmux'
+date: '2021-04-18'
 ---
 
 # Overview
@@ -48,9 +48,6 @@ Ctrl-B followed by D
 
 This is a funny one. To exit from a session you need to press Ctrl-B and then press D. This will return you back to the local terminal on the device.
 
-# Windows
-This needs sorting
-# Panes
-This needs sorting
+
 # Conclusion
-On the surface Tmux is a very simple and useful tool. But as we delve into the features, Tmux becomes a very powerful tool for controlling multiple terminals at once.
+Tmux is a very useful tool, and very simple to get started with.
