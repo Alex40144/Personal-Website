@@ -1,6 +1,6 @@
 ---
 title: 'Connecting Scalextric to the internet'
-date: '2021-04-18'
+date: '2021-04-19'
 ---
 
 This project came to life during the lockdown adventure of 2020. I wanted to race my friends at Scalextric, but they needed to be in the same room as me to do that. So I devised a plan to connect the cars to the internet.
