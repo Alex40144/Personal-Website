@@ -17,12 +17,13 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
+    <>
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Hi, I'm Alex. I am studying electronic engineering and I enjoy programming in my free time</p>
+            <p>Hi, I'm Alex. I am studying electronic engineering and I enjoy programming in my free time</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
@@ -30,7 +31,7 @@ export default function Home({ allPostsData }) {
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
             <Link href={`/posts/${id}`}>
-              <a>{title}</a>
+                <a>{title}</a>
             </Link>
             <br />
             <small className={utilStyles.lightText}>
@@ -41,5 +42,11 @@ export default function Home({ allPostsData }) {
         </ul>
       </section>
     </Layout>
+    <div className={utilStyles.footer}>
+        <Link href={'/contact'}>
+            <a className={utilStyles.contactButton}>Contact</a>
+        </Link>
+    </div>
+    </>
   )
 }
