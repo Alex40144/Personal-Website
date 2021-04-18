@@ -1,0 +1,111 @@
+---
+title: 'A quick Pygame Introduction'
+date: '2021-04-18'
+---
+
+# Overview
+Pygame and Python make the perfect pair when making games. Python has the simple syntax, and Pygame brings the libraries to make the process of game building simple. From graphics to collisions, Pygame has everything.
+
+Installing
+
+```
+python -m pip install pygame
+```
+
+You can install Pygame with pip, it's just like any other module in python.
+
+# The Basics
+## Initialising
+
+```py
+import pygame, sys, random
+```
+
+Here we import all the modules we will need into Python. Python will then load these modules, allowing us to call functions from those modules.
+I have added sys as that will be used to handle the closing of the window cleanly, and random is just useful.
+
+```py
+pygame.init()
+```
+
+This calls the init function in pygame, pygame will do all the things it needs to do.
+
+```py
+screen = pygame.display.set_mode((1000,500))
+pygame.display.set_caption("Game")
+```
+
+
+
+These two lines of code will create our window for the game to run in.
+1000px horizontally by 500px vertically will be our resolution, and Game will be the name of the window.
+
+## Game Loop
+
+```py
+while True:
+    #exit cleanly
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+    #game code
+```
+This is the main loop of the game, the code that is already there closes pygame cleanly. Inside this loop is the code that would check for player inputs and update the screen, anything that needs to happen on each frame.
+
+## Pygame Functions
+
+### Background Colour
+
+```py
+screen.fill((0,255,180))
+```
+
+This fill the screen with a single colour of (R,G,B) values. (from 0-255)
+Put this before the game loop as the background does not need to be upated every frame
+
+### Drawing shapes
+
+Pygame has many shapes to choose from, here are the most basic ones. If you want more be sure to check out the Pygame documentation.
+
+#### Rectangle
+First need to define the position of our rectangle
+```py
+Rectangle = pygame.Rect(200, 200, 100, 100)
+```
+This will create a rectangle with the top left corner 200px from the top and left of the screen with a width and height of 50px
+If you try running this you won't see any shape as we have only designed the shape, we haven't drawn it yet.
+
+```py
+pygame.draw.rect(screen, (255,0,0), Rectangle, 3)
+```
+This will draw the rectangle on the screen that we defined earlier, Red in colour, Our rectangle, with a border width of 3px
+Be sure to put it after the background and before the update so you can see it!
+
+#### Circle
+Circles are slightly different, we don't define the top left point, we define the center and the radius.
+
+```py
+pygame.draw.circle(screen, (0,0,255), (350, 350), 50, 10)
+```
+
+The first argument is the surface to draw on, then the colour, Position, Radius, and an optional width argument.
+
+#### Line
+
+To draw a line we define the start and end positions
+
+```py
+pygame.draw.line(screen,(0,0,200),(250,250),(350,350),5)
+```
+
+# Conclusion
+
+You should now have a sceen that looks like this:
+
+![Alt text](/images/Pygame-shapes.png "Pygame Art")
+
+Have a go at creating some art with these basic shapes.
+Try searching for Kandinsky's work for some ideas.
+
+We have learnt a lot about drawing shapes and objects in python, in the next chapter we will look at how you can move these shapes around the screen
