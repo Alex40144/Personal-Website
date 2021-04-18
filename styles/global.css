@@ -31,3 +31,10 @@ pre {
     border-left: 4px solid #0070f3;
     padding: 2%;
 }
+
+img[src*="#200x400"] {
+    width:200px;
+    height:400px;
+    float: left;
+    margin: 50px;
+ }
