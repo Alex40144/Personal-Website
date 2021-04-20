@@ -1,3 +1,23 @@
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "tailwindcss/components";
+
+@layer base {
+    h1 {
+      @apply text-3xl font-bold py-6;
+    }
+    h2 {
+      @apply text-2xl font-bold py-4;
+    }
+    h3 {
+        @apply text-xl font-bold py-2;
+    }
+    h4 {
+        @apply text-lg font-bold py-2;
+    }
+  }
+
+
 pre {
     background-color: rgb(223, 223, 223);
     border-left: 4px solid #0070f3;
