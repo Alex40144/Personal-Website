@@ -32,6 +32,25 @@ export default function Home({
       <section className="text-xl py-4">
             <p>Hi, I'm Alex. I am studying electronic engineering and I enjoy programming in my free time</p>
       </section>
+      <section>
+          <h2 className="font-bold text-3xl py-4">Projects</h2>
+        <form className="flex flex-row w-full justify-between">
+            <Link href="/FinanceTracker">
+                <input 
+                    className="text-3xl bg-blue font-bold flex m-5 px-4 py-8 flex-grow rounded-md cursor-pointer"
+                    value="Finance Tracker"
+                    type="submit"
+                />
+            </Link>
+            <Link href="/">
+                <input
+                    className="text-3xl bg-blue font-bold flex m-5 px-4 py-8 flex-grow rounded-md cursor-pointer"
+                    value="Vacant"
+                    type="submit"
+                />
+            </Link>
+        </form>
+      </section>
       <section className="text-lg py-4">
         <h2 className="font-bold text-3xl py-4">Blog</h2>
         <ul className="m-0 p-0 list-none">
