@@ -5,7 +5,7 @@ import Layout from '../../components/FTlayout'
 
 export default function Main(){
   return (
-    <Layout>
+    <Layout home>
         <h2>This will not work if you are not in the development environement on my laptop</h2>
         <form className="flex flex-row w-full justify-between">
             <Link href="/FinanceTracker/Signup">

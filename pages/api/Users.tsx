@@ -23,6 +23,13 @@ async function createUser(name: string, email: string, password: string){
             email: email,
             name: name,
             password: hash,
+            Data:{
+                create: {
+                    title: "Example",
+                    value: -23.57,
+                    frequency: "weekly",
+                }
+            }
         },
     })
     return result;

@@ -7,17 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Profile {
-  id      Int     @id @default(autoincrement())
-  bio     String?
-  userId_ Int     @map("\"userId\"")
-  Users   Users   @relation(fields: [userId_], references: [id])
+model Users {
+  name     String  @db.VarChar(255)
+  id       Int     @id @default(autoincrement())
+  email    String  @unique @db.VarChar(255)
+  password String? @db.VarChar(255)
+  Data     Data[]
 }
 
-model Users {
-  name     String    @db.VarChar(255)
-  id       Int       @id @default(autoincrement())
-  email    String    @unique @db.VarChar(255)
-  password String?   @db.VarChar(255)
-  Profile  Profile[]
+model Data {
+  title     String @db.VarChar(255)
+  value     Float  @db.Real
+  frequency String @db.VarChar(255)
+  user      Int    @default(autoincrement())
+  id        Int    @unique @default(autoincrement())
+  Users     Users  @relation(fields: [user], references: [id])
+
+  @@index([user], name: "fki_id sync")
 }

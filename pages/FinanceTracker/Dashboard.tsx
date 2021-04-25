@@ -24,7 +24,9 @@ export default function Dashboard() {
             {loggedIn && (
                 <>
                 <p>Welcome {data.email}!</p>
-                <button
+                <h1>Dashboard</h1>
+                <p>Someone make this look nice</p>
+                <button className="text-blue underline cursor-pointer"
                     onClick={() => {
                     cookie.remove('token');
                     revalidate();
@@ -52,8 +54,6 @@ export default function Dashboard() {
                 </Link>
                 </form>
             )}
-            <h1>Dashboard</h1>
-            <p>Someone make this look nice</p>
         </Layout>
     )
   }
