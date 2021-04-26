@@ -4,6 +4,7 @@ import Router from 'next/router'
 import useSWR from 'swr';
 import Link from 'next/link'
 import cookie from 'js-cookie'
+import Table from '../../components/table'
 
 
 export default function dashboard() {
@@ -28,10 +29,8 @@ export default function dashboard() {
             <Head>
                 <title>{siteTitle}</title>
             </Head>
-            <p>Welcome {user.email}!</p>
-            <h1>Dashboard</h1>
-            <p>Someone make this look nice</p>
-            <p>{data[0].title}</p>
+            <h1>Transactions</h1>
+            <Table data={data}/>
             <button className="text-blue underline cursor-pointer"
                 onClick={() => {
                 cookie.remove('token');

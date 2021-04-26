@@ -2,9 +2,19 @@ import React, { useState } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
 import Layout from '../../components/FTlayout'
+import useSWR from 'swr';
 
 export default function Main(){
+    const {data, revalidate} = useSWR('/api/authed', async function(args) {
+        const res = await fetch(args);
+        return res.json();
+    });
+    if (!data) return <h1>Loading...</h1>;
+    if (data.email) {
+        Router.push("/FinanceTracker/Dashboard")
+    }
   return (
+
     <Layout home>
         <h2>This will not work if you are not in the development environement on my laptop</h2>
         <form className="flex flex-row w-full justify-between">

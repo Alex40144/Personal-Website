@@ -16,12 +16,13 @@ model Users {
 }
 
 model Data {
-  title     String @db.VarChar(255)
-  value     Float  @db.Real
-  frequency String @db.VarChar(255)
-  user      Int    @default(autoincrement())
-  id        Int    @unique @default(autoincrement())
-  Users     Users  @relation(fields: [user], references: [id])
+  title     String  @db.VarChar(255)
+  value     Float   @db.Real
+  frequency String  @db.VarChar(255)
+  user      Int     @default(autoincrement())
+  id        Int     @unique @default(autoincrement())
+  category  String? @db.VarChar(255)
+  Users     Users   @relation(fields: [user], references: [id])
 
   @@index([user], name: "fki_id sync")
 }

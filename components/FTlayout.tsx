@@ -56,9 +56,9 @@ export default function Layout({
         ) : (
             <>
             <div id="Sidebar" className="h-full w-0 fixed top-0 left-0 bg-black overflow-x-hidden pt-10 duration-500 z-10">
-            <a href="#" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Dashboard</a>
-                <a href="#" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Add transaction</a>
-                <a href="#" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Settings</a>
+            <a href="/FinanceTracker/Dashboard" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Dashboard</a>
+                <a href="/FinanceTracker/Transactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Transactions</a>
+                <a href="/FinanceTracker/Settings" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Settings</a>
             </div>
             <div className="flex flex-row bg-blue h-14 w-full">
                 <button className="text-4xl text-white" onClick={toggleSidebar}>&#9776;</button>

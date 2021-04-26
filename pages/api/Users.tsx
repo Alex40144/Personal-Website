@@ -28,6 +28,7 @@ async function createUser(name: string, email: string, password: string){
                     title: "Example",
                     value: -23.57,
                     frequency: "weekly",
+                    category: "examples"
                 }
             }
         },
