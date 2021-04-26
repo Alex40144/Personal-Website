@@ -43,7 +43,7 @@ export default function Layout({
         </Head>
         <header>
         {home ? (
-            <>
+            <div className="m-auto text-center my-12">
             <Image
                 priority
                 src="/images/profile.png"
@@ -52,7 +52,7 @@ export default function Layout({
                 alt={name}
             />
             <h1 className="text-6xl text-blue font-bold p-6">Finance Tracker</h1>
-            </>
+            </div>
         ) : (
             <>
             <div id="Sidebar" className="h-full w-0 fixed top-0 left-0 bg-black overflow-x-hidden pt-10 duration-500 z-10">
@@ -69,7 +69,7 @@ export default function Layout({
             </>
         )}
         </header>
-        <div className="m-10">
+        <div className="m-auto w-96 text-center">
             <main>{children}</main>
         </div>
     </div>
