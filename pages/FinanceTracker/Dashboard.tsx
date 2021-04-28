@@ -10,8 +10,8 @@ export default function dashboard() {
     const fetcher = (url: string) => fetch(url).then((response) => response.json())
 
     const {data: user, revalidate} = useSWR('/api/authed', fetcher)
-    const {data, error} = useSWR(user ? '/api/data/'+user.userId : null, fetcher)
-    if (!user) return <h1>Loading...</h1>;
+    const {data, error} = useSWR(user ? '/api/get/'+user.userId : null, fetcher)
+    if (!user) return <h1>Loading User...</h1>;
 
     let loggedIn = false;
     if (user.email) {
@@ -20,7 +20,7 @@ export default function dashboard() {
         Router.push('/FinanceTracker')
     }
     
-    if (!data) return <h1>Loading...</h1>;
+    if (!data) return <h1>Loading Data...</h1>;
     console.log(data)
 
     return (
