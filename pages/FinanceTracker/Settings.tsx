@@ -8,16 +8,13 @@ import Table from '../../components/table'
 
 
 export default function dashboard() {
-    const [title, setTitle] = useState('')
-    const [value, setValue] = useState('')
-    const [frequency , setFrequency] = useState('')
     const [category, setCategory] = useState('')
 
 
     const fetcher = (url: string) => fetch(url).then((response) => response.json())
 
     const {data: user, revalidate} = useSWR('/api/authed', fetcher)
-    const {data, error} = useSWR(user ? '/api/getTransactions?userId='+user.userId : null, fetcher)
+    const {data, error} = useSWR(user ? '/api/getUserSettings?userId='+user.userId : null, fetcher)
     if (!user) return <h1>Loading...</h1>;
 
     let loggedIn = false;
@@ -29,10 +26,12 @@ export default function dashboard() {
     
     if (!data) return <h1>Loading...</h1>;
     console.log(data)
+    var categories = data[0]["categories"]
+    console.log(categories)
 
     const submitData = async (e: React.SyntheticEvent) => {
         e.preventDefault()
-        const body = { title, value, frequency, category, user }
+        const body = {category}
         const res = await fetch(`http://localhost:3000/api/createTransaction`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -43,8 +42,8 @@ export default function dashboard() {
         if (data && data.error) {
             alert(data.message)
         }
-            //check that it worked
         });
+        
     };
 
     return (
@@ -53,7 +52,28 @@ export default function dashboard() {
                 <title>{siteTitle}</title>
             </Head>
             <h1>Transactions</h1>
-            <Table data={data}/>
+            <div>
+            {categories.map(listitem => (
+                <li>{listitem}</li>
+            ))}
+            </div>
+            <div className="p-12 -flex text-justify">
+                <form
+                onSubmit={submitData}>
+                <h1>Add category</h1>
+                <input
+                    onChange={e => setCategory(e.target.value)}
+                    placeholder="category"
+                    type="text"
+                    value={category}
+                />
+                <input
+                    disabled={!category}
+                    type="submit"
+                    value="Save"
+                />
+                </form>
+            </div>
             <button className="text-blue underline cursor-pointer"
                 onClick={() => {
                 cookie.remove('token');
@@ -62,41 +82,6 @@ export default function dashboard() {
                 Logout
             </button>
             
-            <div className="p-12 -flex text-justify">
-                <form
-                onSubmit={submitData}>
-                <h1>Add transaction</h1>
-                <input
-                    onChange={e => setTitle(e.target.value)}
-                    placeholder="Name of Transaction"
-                    type="text"
-                    value={title}
-                />
-                <input
-                    onChange={e => setValue(e.target.value)}
-                    placeholder="value"
-                    type="number"
-                    value={value}
-                />
-                <input
-                    onChange={e => setFrequency(e.target.value)}
-                    placeholder="frequency"
-                    type="text"
-                    value={frequency}
-                />
-                <input
-                    onChange={e => setCategory(e.target.value)}
-                    placeholder="category"
-                    type="text"
-                    value={category}
-                />
-                <input
-                    disabled={!title || !value || !frequency || !category || title == category}
-                    type="submit"
-                    value="Save"
-                />
-                </form>
-            </div>
         </Layout>
     )
   }

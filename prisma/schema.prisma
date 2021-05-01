@@ -8,11 +8,12 @@ datasource db {
 }
 
 model Users {
-  name     String  @db.VarChar(255)
-  id       Int     @id @default(autoincrement())
-  email    String  @unique @db.VarChar(255)
-  password String? @db.VarChar(255)
-  Data     Data[]
+  name       String   @db.VarChar(255)
+  id         Int      @id @default(autoincrement())
+  email      String   @unique @db.VarChar(255)
+  password   String?  @db.VarChar(255)
+  categories String[]
+  Data       Data[]
 }
 
 model Data {

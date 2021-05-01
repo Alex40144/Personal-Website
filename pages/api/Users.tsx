@@ -23,6 +23,7 @@ async function createUser(name: string, email: string, password: string){
             email: email,
             name: name,
             password: hash,
+            categories: ["Food and drink", "Travel", "Subscriptions", "Homeware"],
             Data:{
                 create: {
                     title: "Example",
@@ -47,8 +48,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             res.status(403).json({error: true, message: bodyError.message});
         }
         var name = req.body.name
-        const email = req.body.email;
-        const password = req.body.password;
+        var email = req.body.email
+        var password = req.body.password
 
         var user = await findUser(email)
         if (!user) {
