@@ -78,12 +78,14 @@ export default function dashboard() {
                     type="number"
                     value={value}
                 />
+                <p> this needs updating to weekly/monthly/yearly </p>
                 <input
                     onChange={e => setFrequency(e.target.value)}
                     placeholder="frequency"
                     type="text"
                     value={frequency}
                 />
+                <p>this needs to be a drop down of the categories the user has made</p>
                 <input
                     onChange={e => setCategory(e.target.value)}
                     placeholder="category"

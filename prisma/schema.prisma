@@ -1,29 +1,28 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+
 model Users {
-  name       String   @db.VarChar(255)
-  id         Int      @id @default(autoincrement())
-  email      String   @unique @db.VarChar(255)
-  password   String?  @db.VarChar(255)
+  name       String   
+  id         String      @id @default(dbgenerated()) @map("_id")
+  email      String   @unique 
+  password   String?  
   categories String[]
-  Data       Data[]
+  data       Data[]
 }
 
 model Data {
-  title     String  @db.VarChar(255)
-  value     Float   @db.Real
-  frequency String  @db.VarChar(255)
-  user      Int     @default(autoincrement())
-  id        Int     @unique @default(autoincrement())
-  category  String? @db.VarChar(255)
-  Users     Users   @relation(fields: [user], references: [id])
-
-  @@index([user], name: "fki_id sync")
+  title     String
+  value     Float
+  frequency String
+  id        String     @unique @default(dbgenerated())
+  category  String
+  users Users   @relation(fields: [userId], references: [id])
+  userId String
 }

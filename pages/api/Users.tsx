@@ -24,7 +24,7 @@ async function createUser(name: string, email: string, password: string){
             name: name,
             password: hash,
             categories: ["Food and drink", "Travel", "Subscriptions", "Homeware"],
-            Data:{
+            data:{
                 create: {
                     title: "Example",
                     value: -23.57,

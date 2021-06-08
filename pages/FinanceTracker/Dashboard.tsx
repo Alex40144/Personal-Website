@@ -10,7 +10,8 @@ export default function dashboard() {
     const fetcher = (url: string) => fetch(url).then((response) => response.json())
 
     const {data: user, revalidate} = useSWR('/api/authed', fetcher)
-    const {data, error} = useSWR(user ? '/api/getTransactions?userId='+user.userId : null, fetcher)
+    console.log(user)
+    const {data, error} = useSWR(user ? '/api/getTransactions?id='+user.id : null, fetcher)
     if (!user) return <h1>Loading User...</h1>;
 
     let loggedIn = false;
