@@ -16,7 +16,7 @@ export default function Main(){
   return (
 
     <Layout home>
-        <h2>This will not work if you are not in the development environement on my laptop</h2>
+        <h2>This is a work in progress, so you might lose all your data</h2>
         <form className="flex flex-row w-full justify-between">
             <Link href="/FinanceTracker/Signup">
                 <input 
