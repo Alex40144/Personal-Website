@@ -18,12 +18,12 @@ async function findUser(email: string){
 
 async function createUser(name: string, email: string, password: string){
     const hash = await bcrypt.hash(password, saltRounds)
-    const result = prisma.users.create({
+    const user = await prisma.users.create({
         data: {
             email: email,
             name: name,
             password: hash,
-            categories: ["Food and drink", "Travel", "Subscriptions", "Homeware"],
+            categories: ["Food and drink", "Travel", "Entertainment", "Homeware"],
             data:{
                 create: {
                     title: "Example",
@@ -34,7 +34,7 @@ async function createUser(name: string, email: string, password: string){
             }
         },
     })
-    return result;
+    return user;
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

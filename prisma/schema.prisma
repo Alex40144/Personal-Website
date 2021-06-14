@@ -4,15 +4,15 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["mongodb"]
 }
 
 model Users {
-  name       String   
-  id         String      @id @default(dbgenerated()) @map("_id")
-  email      String   @unique 
-  password   String?  
+  name       String
+  id         String   @id @default(dbgenerated()) @map("_id")
+  email      String   @unique
+  password   String
   categories String[]
   data       Data[]
 }
@@ -21,8 +21,8 @@ model Data {
   title     String
   value     Float
   frequency String
-  id        String     @unique @default(dbgenerated())
+  id        String @unique @default(dbgenerated())
   category  String
-  users Users   @relation(fields: [userId], references: [id])
-  userId String
+  users     Users  @relation(fields: [userId], references: [id])
+  userId    String
 }
