@@ -8,7 +8,7 @@ const saltRounds = 10;
 const jwtSecret = process.env.jwtSecret;
 
 async function findUser(email: string){
-    const result = await prisma.users.findUnique({
+    var result = await prisma.users.findUnique({
         where: {
             email: email,
         },
@@ -17,8 +17,8 @@ async function findUser(email: string){
 }
 
 async function createUser(name: string, email: string, password: string){
-    const hash = await bcrypt.hash(password, saltRounds)
-    const user = await prisma.users.create({
+    var hash = await bcrypt.hash(password, saltRounds)
+    var user = await prisma.users.create({
         data: {
             email: email,
             name: name,
@@ -44,35 +44,37 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         try {
             assert.notStrictEqual(null, req.body.email, 'Email required');
             assert.notStrictEqual(null, req.body.password, 'Password required');
+            assert.notStrictEqual(null, req.body.name, 'Name required');
         } catch (bodyError) {
             res.status(403).json({error: true, message: bodyError.message});
         }
+        
         var name = req.body.name
         var email = req.body.email
         var password = req.body.password
 
         var user = await findUser(email)
         if (!user) {
+            console.log("creating new user")
             // proceed to Create
             var creationResult = await createUser(name, email, password)
-                .catch(e => {
-                    console.log(e)
-                    res.json(e)
-                })
             console.log(creationResult)
             if (creationResult) {
-                const user = creationResult;
-                const token = jwt.sign(
+                var user = creationResult;
+                var token = jwt.sign(
                     {userId: user.name, email: user.email},
                     jwtSecret,
                     {
-                    expiresIn: 3000, //50 minutes
-                },
-            );
-            res.status(200).json({token});
-            return;
+                        expiresIn: 3000, //50 minutes
+                    },
+                );
+                res.status(200).json({token});
+                return;
             }
-            res.json(creationResult)
+            else{
+                console.log("failed to create user")
+                res.status(500).json({error: true, message: 'Something went wrong crating user account'});
+            }
         } else {
             // User exists
             res.status(403).json({error: true, message: 'Email already exists'});

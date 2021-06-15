@@ -18,6 +18,7 @@
     "next-connect": "^0.10.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-toastify": "^7.0.4",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
     "swr": "^0.5.5"

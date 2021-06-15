@@ -5,7 +5,7 @@ const jwtSecret = process.env.jwtSecret;
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
-    if (!('token' in req.cookies)) {
+    if (!req.cookies) {
       res.status(401).json({message: 'Unable to auth'});
       return;
     }
@@ -15,7 +15,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       try {
         decoded = jwt.verify(token, jwtSecret);
       } catch (e) {
-        console.error(e);
+        res.status(401).json({message: 'Login has Expired'});
+        return;
       }
     }
 

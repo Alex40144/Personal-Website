@@ -34,18 +34,18 @@ export default function Home({
       </section>
       <section>
           <h2 className="font-bold text-3xl py-4">Projects</h2>
-        <form className="flex flex-row w-full justify-between">
+        <form className="flex flex-col w-full justify-between text-center">
             <Link href="/FinanceTracker">
                 <input 
-                    className="text-3xl bg-blue font-bold flex m-5 px-4 py-8 flex-grow rounded-md cursor-pointer"
+                    className="text-3xl bg-blue font-bold flex m-5 px-8 py-6 flex-grow rounded-md cursor-pointer"
                     value="Finance Tracker"
                     type="submit"
                 />
             </Link>
             <Link href="/">
-                <input
-                    className="text-3xl bg-blue font-bold flex m-5 px-4 py-8 flex-grow rounded-md cursor-pointer"
-                    value="Vacant"
+                <input 
+                    className="text-3xl bg-blue font-bold flex m-5 px-8 py-6 flex-grow rounded-md cursor-pointer"
+                    value="Coming Soon..."
                     type="submit"
                 />
             </Link>

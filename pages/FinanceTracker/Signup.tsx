@@ -21,7 +21,6 @@ const SignUp: React.FC = () => {
             .then((data) => {
             if (data && data.error) {
                 setError(data.message);
-                //alert(data.message)
             }
             if (data && data.token) {
                 //set cookie
@@ -29,7 +28,7 @@ const SignUp: React.FC = () => {
                 Router.push('/FinanceTracker/Dashboard');
             }
             else{
-                console.error("no token with sign up request")
+                console.error("Signup failed. Please contact Alex")
                 console.log(data)
             }
         });
@@ -38,7 +37,7 @@ const SignUp: React.FC = () => {
 
     return (
         <Layout>
-        <div className="p-12 -flex text-justify">
+        <div className="p-12 flex text-justify">
             <form
             onSubmit={submitData}>
             <h1>Sign up</h1>
