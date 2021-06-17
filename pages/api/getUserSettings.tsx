@@ -1,20 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../lib/prisma'
 
-async function findData(id: number){
+async function findData(id: string){
     const result = await prisma.users.findMany({
         where: {
             id: id,
         },
     })
-    return result;
+    return result[0].settings;
 }
 
 export default  async(req: NextApiRequest, res: NextApiResponse) => {
-    var userId = req.query.userId
+    var id = req.query.id
     if (req.method === 'GET') {
         
-        var data = await findData(parseInt(userId.toString()))
+        var data = await findData(id.toString())
         res.json(data)
     }
 };

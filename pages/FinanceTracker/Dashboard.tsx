@@ -4,6 +4,7 @@ import Router from 'next/router'
 import useSWR from 'swr';
 import Link from 'next/link'
 import cookie from 'js-cookie'
+import Table from '../../components/table'
 
 
 export default function dashboard() {
@@ -14,10 +15,7 @@ export default function dashboard() {
     const {data, error} = useSWR(user ? '/api/getTransactions?id='+user.id : null, fetcher)
     if (!user) return <h1>Loading User...</h1>;
 
-    let loggedIn = false;
-    if (user.email) {
-        loggedIn = true;
-    } else {
+    if (!user.email) {
         Router.push('/FinanceTracker')
     }
     
@@ -32,7 +30,7 @@ export default function dashboard() {
             <p>Welcome {user.email}!</p>
             <h1>Dashboard</h1>
             <p>Someone make this look nice</p>
-            <p>{data[0].title}</p>
+            <Table data={data}/>
             <button className="text-blue underline cursor-pointer"
                 onClick={() => {
                 cookie.remove('token');

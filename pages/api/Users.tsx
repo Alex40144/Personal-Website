@@ -23,7 +23,9 @@ async function createUser(name: string, email: string, password: string){
             email: email,
             name: name,
             password: hash,
-            categories: ["Food and drink", "Travel", "Entertainment", "Homeware"],
+            settings: {
+                "categories": ["Food and drink", "Travel", "Entertainment", "Homeware"]
+            },
             data:{
                 create: {
                     title: "Example",
@@ -47,6 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             assert.notStrictEqual(null, req.body.name, 'Name required');
         } catch (bodyError) {
             res.status(403).json({error: true, message: bodyError.message});
+            return;
         }
         
         var name = req.body.name
@@ -62,7 +65,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             if (creationResult) {
                 var user = creationResult;
                 var token = jwt.sign(
-                    {userId: user.name, email: user.email},
+                    {userId: user.name, email: user.email, id: user.id},
                     jwtSecret,
                     {
                         expiresIn: 3000, //50 minutes
