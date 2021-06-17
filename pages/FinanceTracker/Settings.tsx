@@ -13,8 +13,8 @@ export default function dashboard() {
 
     const fetcher = (url: string) => fetch(url).then((response) => response.json())
 
-    const {data: user, revalidate} = useSWR('/api/authed', fetcher)
-    const {data, error} = useSWR(user ? '/api/getUserSettings?id='+user.id : null, fetcher)
+    const {data: user} = useSWR('/api/authed', fetcher)
+    const {data, error, revalidate} = useSWR(user ? '/api/getUserSettings?id='+user.id : null, fetcher)
     if (!user) return <h1>Loading...</h1>;
 
     let loggedIn = false;
@@ -25,12 +25,14 @@ export default function dashboard() {
     }
     
     if (!data) return <h1>Loading...</h1>;
-    console.log(data)
-    var categories = data.categories
 
     const submitData = async (e: React.SyntheticEvent) => {
         e.preventDefault()
-        const body = {category}
+        data.categories.push(category)
+        const body = {
+            "settings":data,
+            "id":user.id
+        }
         const res = await fetch(`http://localhost:3000/api/updateUserSettings`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -42,7 +44,7 @@ export default function dashboard() {
             alert(data.message)
         }
         });
-        
+        revalidate()
     };
 
     return (
@@ -52,7 +54,7 @@ export default function dashboard() {
             </Head>
             <h1>Categories</h1>
             <div>
-            {categories.map(listitem => (
+            {data.categories.map(listitem => (
                 <li>{listitem}</li>
             ))}
             </div>

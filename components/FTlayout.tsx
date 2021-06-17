@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import cookie from 'js-cookie'
+import { ToastContainer, toast } from 'react-toastify';
+import router from 'next/router';
 
 const name = 'Alex Pegg'
 export const siteTitle = 'Alex Pegg'
@@ -43,31 +46,44 @@ export default function Layout({
         </Head>
         <header>
         {home ? (
-            <div className="m-auto text-center my-12">
-            <Image
-                priority
-                src="/images/profile.png"
-                height={144}
-                width={144}
-                alt={name}
-            />
-            <h1 className="text-6xl text-blue font-bold p-6">Finance Tracker</h1>
+            <div>
+                <ToastContainer />
+                <div id="Sidebar"className="h-full w-0 fixed top-0 left-0 bg-black overflow-x-hidden pt-10 duration-500 z-10">
+                <a href="/FinanceTracker/Dashboard" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Dashboard</a>
+                    <a href="/FinanceTracker/RecurringTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Recurring Transactions</a>
+                    <a href="/FinanceTracker/SingleTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Add a single Transaction</a>
+                    <a href="/FinanceTracker/Settings" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Settings</a>
+                </div>
+                <div className="flex flex-row bg-blue h-14 w-full">
+                    <button disabled className="text-4xl text-white" onClick={toggleSidebar}>&#9776;</button>
+                    <Link href="/FinanceTracker">
+                    <a className="hover:underline text-white font-bold text-xl m-4">Finance Tracker</a>
+                    </Link>
+                </div>
             </div>
         ) : (
-            <>
-            <div id="Sidebar" className="h-full w-0 fixed top-0 left-0 bg-black overflow-x-hidden pt-10 duration-500 z-10">
-            <a href="/FinanceTracker/Dashboard" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Dashboard</a>
-                <a href="/FinanceTracker/RecurringTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Recurring Transactions</a>
-                <a href="/FinanceTracker/SingleTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Add a single Transaction</a>
-                <a href="/FinanceTracker/Settings" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Settings</a>
+            <div>
+                <ToastContainer />
+                <div id="Sidebar"className="h-full w-0 fixed top-0 left-0 bg-black overflow-x-hidden pt-10 duration-500 z-10">
+                <a href="/FinanceTracker/Dashboard" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Dashboard</a>
+                    <a href="/FinanceTracker/RecurringTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Recurring Transactions</a>
+                    <a href="/FinanceTracker/SingleTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Add a single Transaction</a>
+                    <a href="/FinanceTracker/Settings" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Settings</a>
+                </div>
+                <div className="flex flex-row bg-blue h-14 w-full">
+                    <button className="text-4xl text-white" onClick={toggleSidebar}>&#9776;</button>
+                    <Link href="/FinanceTracker">
+                    <a className="hover:underline text-white font-bold text-xl m-4">Finance Tracker</a>
+                    </Link>
+                    <button className="text-white underline cursor-pointer"
+                        onClick={() => {
+                            cookie.remove('token');
+                            router.push('/FinanceTracker')
+                        }}>
+                        Logout
+                    </button>
+                </div>
             </div>
-            <div className="flex flex-row bg-blue h-14 w-full">
-                <button className="text-4xl text-white" onClick={toggleSidebar}>&#9776;</button>
-                <Link href="/FinanceTracker">
-                <a className="hover:underline text-white font-bold text-xl m-4">Finance Tracker</a>
-                </Link>
-            </div>
-            </>
         )}
         </header>
         <div className="m-auto w-96 text-center">

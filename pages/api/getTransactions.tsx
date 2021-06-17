@@ -6,6 +6,12 @@ async function findData(id: string){
         where: {
             ownerId: id,
         },
+        select: {
+            title: true,
+            value: true,
+            frequency: true,
+            category: true
+          },
     })
     console.log(result)
     return result;
@@ -19,7 +25,6 @@ export default  async(req: NextApiRequest, res: NextApiResponse) => {
     }
     if (req.method === 'GET') {
         var data = await findData(id)
-        console.log(data)
         res.json(data)
     }
 };

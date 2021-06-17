@@ -3,7 +3,7 @@ import Router from 'next/router'
 import cookie from 'js-cookie'
 import Layout from '../../components/FTlayout'
 
-const SignUp: React.FC = () => {
+export default function signup() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -36,7 +36,7 @@ const SignUp: React.FC = () => {
 
 
     return (
-        <Layout>
+        <Layout home>
         <div className="p-12 flex text-justify">
             <form
             onSubmit={submitData}>
@@ -74,5 +74,3 @@ const SignUp: React.FC = () => {
         </Layout>
     )
 }
-
-export default SignUp

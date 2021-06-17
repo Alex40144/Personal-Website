@@ -2,27 +2,11 @@ import React, { useState } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
 import Layout from '../../components/FTlayout'
-import useSWR from 'swr';
-import { ToastContainer, toast } from 'react-toastify';
 
 export default function Main(){
-    const {data, revalidate} = useSWR('/api/authed', async function(args) {
-        const res = await fetch(args);
-        return res.json();
-    });
-    if (!data) return <h1>Loading...</h1>;
-    if (data.email) {
-        Router.push("/FinanceTracker/Dashboard")
-    }
-    if (data.message){
-        toast(data.message, {
-            position: toast.POSITION.BOTTOM_RIGHT
-          });
-    }
   return (
 
     <Layout home>
-        <ToastContainer />
         <h2>This is a work in progress, so you might lose all your data</h2>
         <form className="flex flex-row w-full justify-evenly text-center">
             <div className="text-center w-auto">

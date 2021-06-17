@@ -6,7 +6,7 @@ const jwtSecret = process.env.jwtSecret;
 export default (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     if (!req.cookies) {
-      res.status(401).json({message: 'Unable to auth'});
+      res.status(401).json({message: 'No previous login found'});
       return;
     }
     let decoded: any;
