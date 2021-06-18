@@ -2,19 +2,21 @@ import Layout, { siteTitle } from '../../components/FTlayout'
 import Head from 'next/head'
 import React, { useState } from 'react'
 import Router from 'next/router'
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
 import cookie from 'js-cookie'
 import Table from '../../components/table'
+import { toast } from 'react-toastify';
+import next from 'next'
 
 
 export default function dashboard() {
-    const [category, setCategory] = useState('')
+    var [category, setCategory] = useState('')
 
 
     const fetcher = (url: string) => fetch(url).then((response) => response.json())
 
     const {data: user} = useSWR('/api/authed', fetcher)
-    const {data, error, revalidate} = useSWR(user ? '/api/getUserSettings?id='+user.id : null, fetcher)
+    var {data, error, revalidate} = useSWR(user ? '/api/getUserSettings?id='+user.id : null, fetcher)
     if (!user) return <h1>Loading...</h1>;
 
     let loggedIn = false;
@@ -38,13 +40,16 @@ export default function dashboard() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
         })
-        .then((r) => r.json())
+        .then((res) => res.json())
         .then((data) => {
-        if (data && data.error) {
-            alert(data.message)
-        }
+            if (data && data.error) {
+                alert(data.message)
+            }
         });
-        revalidate()
+        toast("added new category", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+        setCategory("")
     };
 
     return (
@@ -53,7 +58,7 @@ export default function dashboard() {
                 <title>{siteTitle}</title>
             </Head>
             <h1>Categories</h1>
-            <div>
+            <div id="categories">
             {data.categories.map(listitem => (
                 <li>{listitem}</li>
             ))}

@@ -3,7 +3,7 @@ import Router from 'next/router'
 import cookie from 'js-cookie'
 import Layout from '../../components/FTlayout'
 import useSWR from 'swr';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 export default function login() {

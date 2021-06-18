@@ -10,18 +10,16 @@ async function updateUserSettings(id: string, settings: any){
             id: id,
         },
         data: {
-            settings: settings,
+            settings: settings
         },
-      })
+    })
     return result;
 }
 
 export default  async(req: NextApiRequest, res: NextApiResponse) => {
     var id = req.body.id
     var settings = req.body.settings
-    console.log(id)
-    console.log(settings)
-    if (req.method === 'GET') {
+    if (req.method === 'POST') {
         var data = await updateUserSettings(id.toString(), settings)
         res.json(data)
     }
