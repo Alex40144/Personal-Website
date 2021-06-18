@@ -45,48 +45,37 @@ export default function Layout({
         <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <header>
-        {home ? (
-            <div>
-                <ToastContainer />
-                <div id="Sidebar"className="h-full w-0 fixed top-0 left-0 bg-black overflow-x-hidden pt-10 duration-500 z-10">
-                <a href="/FinanceTracker/Dashboard" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Dashboard</a>
-                    <a href="/FinanceTracker/RecurringTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Recurring Transactions</a>
-                    <a href="/FinanceTracker/SingleTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Add a single Transaction</a>
-                    <a href="/FinanceTracker/Settings" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Settings</a>
-                </div>
-                <div className="flex flex-row bg-blue h-14 w-full">
-                    <button disabled className="text-4xl text-white" onClick={toggleSidebar}>&#9776;</button>
-                    <Link href="/FinanceTracker">
-                    <a className="hover:underline text-white font-bold text-xl m-4">Finance Tracker</a>
-                    </Link>
-                </div>
-            </div>
-        ) : (
-            <div>
-                <ToastContainer />
-                <div id="Sidebar"className="h-full w-0 fixed top-0 left-0 bg-black overflow-x-hidden pt-10 duration-500 z-10">
-                <a href="/FinanceTracker/Dashboard" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Dashboard</a>
-                    <a href="/FinanceTracker/RecurringTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Recurring Transactions</a>
-                    <a href="/FinanceTracker/SingleTransactions" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl"> Add a single Transaction</a>
-                    <a href="/FinanceTracker/Settings" className="text-light p-8 block w-96 duration-300 hover:text-blue text-3xl">Settings</a>
-                </div>
-                <div className="flex flex-row bg-blue h-14 w-full">
-                    <button className="text-4xl text-white" onClick={toggleSidebar}>&#9776;</button>
-                    <Link href="/FinanceTracker">
-                    <a className="hover:underline text-white font-bold text-xl m-4">Finance Tracker</a>
-                    </Link>
-                    <button className="text-white underline cursor-pointer"
-                        onClick={() => {
-                            cookie.remove('token');
-                            router.push('/FinanceTracker')
-                        }}>
-                        Logout
-                    </button>
-                </div>
-            </div>
-        )}
+        <ToastContainer />                
+        <div id="Sidebar"className="h-full w-0 fixed top-0 left-0 bg-black overflow-x-hidden pt-10 duration-500 z-10">
+        <a href="/FinanceTracker/Dashboard" className="text-light p-8 block w-3/4 duration-300 hover:text-blue text-3xl">Dashboard</a>
+            <a href="/FinanceTracker/RecurringTransactions" className="text-light p-8 block w-3/4 duration-300 hover:text-blue text-3xl"> Recurring Transactions</a>
+            <a href="/FinanceTracker/SingleTransactions" className="text-light p-8 block w-3/4 duration-300 hover:text-blue text-3xl"> Add a single Transaction</a>
+            <a href="/FinanceTracker/Settings" className="text-light p-8 block w-3/4 duration-300 hover:text-blue text-3xl">Settings</a>
+        </div>
+        <div className="flex flex-row bg-blue h-14 w-full">
+            {home ? (
+                <button disabled className="text-4xl text-white" onClick={toggleSidebar}>&#9776;</button>
+            ) : (
+                <button className="text-4xl text-white" onClick={toggleSidebar}>&#9776;</button>
+            )}
+            <Link href="/FinanceTracker">
+            <a className="hover:underline text-white font-bold text-xl m-4">Finance Tracker</a>
+            </Link>
+            {home ? (
+                <></>
+            ):(
+                <button className="text-white underline cursor-pointer"
+                    onClick={() => {
+                        cookie.remove('token');
+                        router.push('/FinanceTracker')
+                    }}>
+                    Logout
+                </button>
+            )}
+        </div>
+        
         </header>
-        <div className="m-auto w-96 text-center">
+        <div className="m-auto w-3/4 text-center">
             <main>{children}</main>
         </div>
     </div>

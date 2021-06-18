@@ -34,19 +34,6 @@ img[src*="#200x400"] {
     height:400px;
 }
 
-thead {
-    color:green;
-}
-tbody {
-    color:blue;
-}
-table {
-    border: 1px solid black;
-}
-td, th{   
-    padding: 5px;
-    border: 1px solid black;
-}
 
 input[type='text'] {
     width: 100%;

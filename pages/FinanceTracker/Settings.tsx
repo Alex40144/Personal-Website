@@ -59,9 +59,7 @@ export default function dashboard() {
             </Head>
             <h1>Categories</h1>
             <div id="categories">
-            {data.categories.map(listitem => (
-                <li>{listitem}</li>
-            ))}
+            <Table data={data}/>
             </div>
             <div className="p-12 -flex text-justify">
                 <form
