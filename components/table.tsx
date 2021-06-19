@@ -10,7 +10,12 @@ export default class Table extends React.Component {
     
     getKeys = function(){
         //this gets the titles of the lists
-        return Object.keys(this.props.data);
+        if (Array.isArray(this.props.data) == true) {
+            return Object.keys(this.props.data[0]);
+        }
+        else {
+            return Object.keys(this.props.data);
+        }
     }
     
     getHeader = function(){
@@ -22,6 +27,8 @@ export default class Table extends React.Component {
     
     getRowsData = function(){
         var keys = this.getKeys();
+        console.log(keys)
+        console.log(keys.length)
         if (keys.length == 1){
             var items = this.props.data[keys[0]];
             return items.map((row)=>{
@@ -29,7 +36,12 @@ export default class Table extends React.Component {
             })
         }
         else{
-            //not implemented (obviously)
+            var items = this.props.data;
+            var keys = this.getKeys();
+            console.log(items)
+            return items.map((row, index)=>{
+            return <tr key={index}><RenderRow key={index} data={row} keys={keys}/></tr>
+            })
         }        
         
     }
@@ -51,7 +63,7 @@ const RenderRow = (props) =>{
     }
     else {
         return props.keys.map((key)=>{
-        return <td key={props.data[key]}>{props.data[key]}</td>
+            return <td className="p-4 m-4 border-b-2 border-gray-200 text-white" key={props.data[key]}>{props.data[key]}</td>
         })
     }
 }
