@@ -57,9 +57,9 @@ export default function dashboard() {
             <Head>
                 <title>{siteTitle}</title>
             </Head>
-            <h1>Categories</h1>
+            <h1>Settings</h1>
             <div id="categories">
-            <Table data={data}/>
+                <Table data={data}/>
             </div>
             <div className="p-12 -flex text-justify">
                 <form

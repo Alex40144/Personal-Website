@@ -16,7 +16,7 @@ export default class Table extends React.Component {
     getHeader = function(){
         var keys = this.getKeys();
         return keys.map((key, index)=>{
-        return <th className="text-white w-full p-8 text-2xl text-left" key={key}>{key}</th>
+        return <th className="text-white bg-blue px-8 py-3 border-b-2 border-gray-200" key={key}>{key}</th>
         })
     }
     
@@ -36,20 +36,18 @@ export default class Table extends React.Component {
     
     render() {
     return (
-        <>
-        <div className=" rounded-2xl bg-dark m-2 w-full">
-            <table className="border-6 w-full">
+        <div className="w-full">
+            <table className="bg-dark m-0 w-full border-separate">
                 {this.getHeader()}
                 {this.getRowsData()}
             </table>
         </div>
-    </>
     );
     }
 }
 const RenderRow = (props) =>{
     if (props.keys.length == 1){
-        return <tr className="text-blue border-1 border-blue border-l-0 text-left m-4" key={props.data}>{props.data}</tr>
+        return <tr className="p-4 m-4 border-b-2 border-gray-200 text-white" key={props.data}>{props.data}</tr>
     }
     else {
         return props.keys.map((key)=>{
