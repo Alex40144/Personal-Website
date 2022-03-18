@@ -83,4 +83,4 @@ These final weeks of the project were filled with play testing by myself, fixing
 
 Overall, I really enjoyed doing this project. I have learnt a lot about web development and specifically with all the frameworks and packages that I have used. I’m going to have a break now and do another project when I’m ready or a good idea comes to my head.
 
-# Play the game at [Pirategame.uk](http://pirategame.uk)
+# Play the game at [Pirategame.uk](http://pirategame.uk) (Offline)
