@@ -17,6 +17,10 @@
     }
   }
 
+html {
+    background-color: #242424;
+}
+
 
 pre {
     background-color: rgb(223, 223, 223);

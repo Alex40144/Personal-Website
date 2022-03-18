@@ -18,8 +18,8 @@ export default function Post({
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <article>
-        <h1 className="text-4xl font-extrabold pt-4 my-2">{postData.title}</h1>
+      <article className='text-white'>
+        <h1 className="text-4xl font-extrabold pt-4 my-2 text-white">{postData.title}</h1>
         <div className="text-light py-2">
           <Date dateString={postData.date} />
         </div>

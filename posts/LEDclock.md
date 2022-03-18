@@ -1,5 +1,5 @@
 ---
-title: 'Putting lots of Addressable LEDs in Ping Pong balls'
+title: 'Ping Pong LED Clock'
 date: '2021-05-15'
 ---
 

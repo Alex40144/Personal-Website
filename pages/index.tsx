@@ -29,11 +29,11 @@ export default function Home({
         <Head>
           <title>{siteTitle}</title>
         </Head>
-        <section className="text-xl py-4">
-            <p>Hi, I'm Alex. I am studying electronic engineering and I enjoy programming in my free time</p>
+        <section className="text-xl py-4 text-white">
+            <p className='text-center'>Hi, I'm Alex. I am studying electronic engineering and I enjoy programming in my free time</p>
         </section>
         <section className="text-lg py-4">
-            <h2 className="font-bold text-3xl py-4">Blog</h2>
+            <h2 className="font-bold text-3xl py-4 text-white">Blog</h2>
             <ul className="m-0 p-0 list-none">
                 {allPostsData.map(({ id, date, title }) => (
                     <li className="mb-8 mt-0 mx-0" key={id}>
