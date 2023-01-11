@@ -8,7 +8,7 @@ This was inspired by a project from Thomas J [on Instructables](https://www.inst
 ![Thomas J's project](https://content.instructables.com/ORIG/F7M/TYZL/JTWSW51Z/F7MTYZLJTWSW51Z.jpg?auto=webp&frame=1&width=1024&height=1024&fit=bounds&md=0d7ae060677a9d64c6bc3fdeb6836a86)
 
 My design was not very similar, firstly instead of laying out the pixels in an isometric grid I set them out in a linear grid, I did this as I thought that this would make the text on the display more readable.
-
+###  
 The first step was to cut lots of holes in the board. to do this I used a 32mm drill bit, I used this size because the ping pong balls have a diameter of 40mm, this means that the ping pong balls sat just through the board and left plenty of space for the glue and LEDs.
 
 ![Drilled holes](/images/IMG_20200212_141748.jpg)
@@ -22,8 +22,7 @@ Then I used a 12mm drill bit to put holes in the back of the ping pong balls to 
 ![LEDs in](/images/IMG_20200311_153425.jpg)
 
 If there is an update to this project I need to rethink how to do this as this wasn't easy to do and is likely to fall apart.
-\
-\
+###  
 The next step was to add a bit of power distribution to the LEDs as they were pretty much off by the end of the string. Here you can also see the power supply which is a 5V 200W unit and a pi zero to control the LEDs. The Pi zero works fine, but I would like to try an Arduino or an ESP32.
 
 ![All LEDs in](/images/IMG_20200623_145555.jpg)
@@ -33,12 +32,12 @@ The next step was to program the pi to show the time on the display.
 ![All LEDs in](/images/IMG_20200623_145536.jpg)
 
 The program was a bit complicated. It firstly gets the time and splits it up into separate characters, I then call a function with what the digit is and its position. it then returns all the positions of LEDs that should be on. It then collects all these positions and turns on those LEDs.
-
+###  
 The next thing I did was to add a scrolling background to make it look a bit more interesting.
 
 ![Background](/images/IMG_20200623_165712.jpg)
 
 It looks great, but I cheaped out on the LEDs and there are a few dead ones, not great, but you get what you pay for.
-
+###  
 All in all, I think this project worked out well, but some improvements can be made.
 
