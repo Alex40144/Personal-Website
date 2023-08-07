@@ -11,7 +11,6 @@ import {read} from 'to-vfile'
 import extract from 'remark-extract-frontmatter';
 import remarkFrontmatter from 'remark-frontmatter';
 import yaml from 'yaml';
-import {matter as vmatter} from 'vfile-matter'
 import matter from 'gray-matter'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
