@@ -1,10 +1,31 @@
 import fs from 'fs'
 import path from 'path'
+// import { unified } from 'unified';
+const unified = require('unified')
+import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+import rehypePrettyCode from 'rehype-pretty-code';
+import {read} from 'to-vfile'
+import extract from 'remark-extract-frontmatter';
+import remarkFrontmatter from 'remark-frontmatter';
+import yaml from 'yaml';
+import {matter as vmatter} from 'vfile-matter'
 import matter from 'gray-matter'
-import remark from 'remark'
-import html from 'remark-html'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
+
+/**
+ * Plugin to parse YAML frontmatter and expose it at `file.data.matter`.
+ *
+ * @type {import('unified').Plugin<Array<void>>}
+ */
+export default function remarkParseFrontmatter() {
+  return function (_, file) {
+    matter(file)
+  }
+}
 
 export function getSortedPostsData() {
   // Get file names under /posts
@@ -16,6 +37,7 @@ export function getSortedPostsData() {
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
+
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents)
@@ -49,21 +71,28 @@ export function getAllPostIds() {
 
 export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-  // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents)
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
-  const contentHtml = processedContent.toString()
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypePrettyCode, {
+      theme: 'one-dark-pro',
+    })
+    .use(remarkParseFrontmatter)
+    .use(extract, { yaml: yaml.parse, name: 'meta' })
+    .use(remarkFrontmatter)
+    .use(rehypeStringify)
+    .process((await read(fullPath)).value);
+
+    let contentHtml = String(file)
 
   // Combine the data with the id and contentHtml
   return {
     id,
     contentHtml,
-    ...(matterResult.data as { date: string; title: string })
+    //...(file.data.matter as { date: string; title: string })
+    ...{ date: "2023-07-08", title: "this works" }
   }
 }
