@@ -1,21 +1,22 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/layout.module.css'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 
-const name = 'Alex Pegg'
 export const siteTitle = 'Alex Pegg'
 
 export default function Layout({
     children,
-    home
+    home,
+    props
 }: {
     children: React.ReactNode
     home?: boolean
+    props: any
 }) {
+    const [Title, setTitle] = useState(props)
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta
@@ -32,45 +33,21 @@ export default function Layout({
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta http-equiv='content-language' content='en-gb' />
             </Head>
-            <header className={styles.header}>
-                {home ? (
-                    <>
-                        <Image
-                            priority
-                            src="/images/profile.png"
-                            height={144}
-                            width={144}
-                            alt={name}
-                        />
-                        <h1 className="text-6xl text-blue font-bold p-6">{name}</h1>
-                    </>
-                ) : (
-                    <>
+            <div className="prose prose-invert text-zinc-400 px-4 sm:px-6 md:px-8 mx-auto mt-12 mb-6">
+                <header>
+                    <h1 className="py-1 mx-auto mt-12 text-4xl sm:text-5xl md:text-6xl font-black text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                        {Title}
+                    </h1>
+                </header>
+                <main>{children}</main>
+                {!home && (
+                    <div className="my-3 text-blue hover:underline">
                         <Link href="/">
-                            <a>
-                                <Image
-                                    priority
-                                    src="/images/profile.png"
-                                    height={108}
-                                    width={108}
-                                    alt={name}
-                                />
-                            </a>
+                            <a>← Back to home</a>
                         </Link>
-                        <Link href="/">
-                            <a className="hover:underline text-blue font-bold text-3xl m-8">{name}</a>
-                        </Link>
-                    </>
+                    </div>
                 )}
-            </header>
-            <main>{children}</main>
-            {!home && (
-                <div className="my-3 text-blue hover:underline">
-                    <Link href="/">
-                        <a>← Back to home</a>
-                    </Link>
-                </div>
-            )}
+            </div>
         </div>
     )
 }

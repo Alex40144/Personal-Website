@@ -1,48 +1,55 @@
-import Layout from '../../components/layout'
-import { getAllPostIds, getPostData } from '../../lib/posts'
-import Head from 'next/head'
-import Date from '../../components/date'
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { serialize } from 'next-mdx-remote/serialize'
+import { mdSerialize } from '../../components/mdSerializer'
+import { MDXRemote } from 'next-mdx-remote'
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
 import React from 'react'
+import Layout from '../../components/layout'
 
-export default function Post({
-  postData
-}: {
-  postData: {
-    title: string
-    date: string
-    contentHtml: string
-  }
-}) {
+
+
+const components = {}
+
+export default function PostPage({ frontMatter: { title, date }, mdxSource }) {
   return (
-    <Layout>
-      <Head>
-        <title>{postData.title}</title>
-      </Head>
-      <article className='text-white'>
-        <h1 className="text-4xl font-extrabold pt-4 my-2 text-white">{postData.title}</h1>
-        <div className="text-light py-2">
-          <Date dateString={postData.date} />
-        </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-      </article>
+    <Layout props={title}>
+      <div className="mt-4">
+        <MDXRemote {...mdxSource} components={components} />
+      </div>
     </Layout>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds()
+const getStaticPaths = async () => {
+  const files = fs.readdirSync(path.join('posts'))
+
+  const paths = files.map(filename => ({
+    params: {
+      id: filename.replace('.mdx', '')
+    }
+  }))
+
   return {
     paths,
     fallback: false
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postData = await getPostData(params?.id as string)
+const getStaticProps = async ({ params: { id } }) => {
+  const markdownWithMeta = fs.readFileSync(path.join('posts',
+    id + '.mdx'), 'utf-8')
+
+  const { data: frontMatter, content } = matter(markdownWithMeta)
+  const mdxSource = await mdSerialize(content)
+
   return {
     props: {
-      postData
+      frontMatter,
+      id,
+      mdxSource
     }
   }
 }
+
+export { getStaticProps, getStaticPaths }
