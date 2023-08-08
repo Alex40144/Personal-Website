@@ -4,6 +4,10 @@ const fs = require('fs');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  compiler: {
+    reactStrictMode: true,
+    styledComponents: true,
+  },
 };
 
 /** @type {import('rehype-pretty-code').Options} */

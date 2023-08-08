@@ -5,13 +5,13 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import React from 'react'
-import Layout from '../../components/layout'
+import Layout from '../../components/Layout'
 
 
 
 const components = {}
 
-export default function PostPage({ frontMatter: { title, date }, mdxSource }) {
+export default function PostPage({ frontMatter: { title, date }, mdxSource }: { frontMatter: { title: String, date: string }, mdxSource: any }) {
   return (
     <Layout props={title}>
       <div className="mt-4">
@@ -36,7 +36,7 @@ const getStaticPaths = async () => {
   }
 }
 
-const getStaticProps = async ({ params: { id } }) => {
+const getStaticProps = async ({ params: { id } }: { params: { id: String } }) => {
   const markdownWithMeta = fs.readFileSync(path.join('posts',
     id + '.mdx'), 'utf-8')
 

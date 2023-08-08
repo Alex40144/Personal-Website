@@ -1,44 +1,18 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Layout from '../components/layout'
-import postCard from '../components/postCard'
+import Layout from '../components/Layout'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import React from 'react'
+import PostCard from '../components/postCard'
 
-export default function Home({ posts }) {
+export default function Home({ posts }: { posts: Array<Object> }) {
     return (
-        <Layout props={"Alex Pegg"}>
-            <div className="mt-5">
-                {posts.map((post, index) => (
-                    <Link href={'/posts/' + post.slug} passHref key={index}>
-                        <div className="card mb-3 pointer" style={{ maxWidth: '540px' }}>
-                            <div className="row g-0">
-                                <div className="col-md-8">
-                                    <div className="card-body">
-                                        <h5 className="card-title">{post.frontMatter.title}</h5>
-                                        <p className="card-text">{post.frontMatter.description}</p>
-                                        <p className="card-text">
-                                            <small className="text-muted">{post.frontMatter.date}</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 m-auto">
-                                    <Image
-                                        src={post.frontMatter.thumbnailUrl}
-                                        className="img-fluid mt-1 rounded-start"
-                                        alt="thumbnail"
-                                        width={500}
-                                        height={400}
-                                        objectFit="cover"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+        <Layout props={"Alex Pegg"} home>
+            {posts.map((post, index) => (
+                <PostCard post={post} index={index} key={index} />
+            ))}
         </Layout>
     )
 }
@@ -57,6 +31,7 @@ export const getStaticProps = async () => {
         }
     })
 
+    posts.sort((a: any, b: any) => Date.parse(b.frontMatter.date) - Date.parse(a.frontMatter.date));
     return {
         props: {
             posts

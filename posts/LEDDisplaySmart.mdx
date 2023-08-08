@@ -10,14 +10,14 @@ Having built a cool LED display, I needed to put something useful on it. Enter S
 The problem was to get an image onto the display. I had decided that I would send the data over UART with my web based serial port tool that I made in a previous post.
 ###
 To begin with I found a library that I could use to extract pixel data from an uploaded image. The image was resized to 128*128, and then set the colour depth to 5-bit, to match the specs of the display.
-```typescript
+```typescript showLineNumbers
 let res = ctx.getImageData(0, 0, 128, 128) //get pixel data for 128*128 area
 let list = Array.from(res.data) //create an array from data
 list = list.map(scaleTo5Bit) //scale data to 0-31
 ```
 Next I had to format the pixel data in the way that the FPGA was expecting. This involved re-ordering the pixels and combining them into 32-bit packets.
 
-```typescript
+```typescript {6}
 for (let i = 0; i < data.length / 2; i++) {
     let topPixel = data[i]
     let bottomPixel = data[i + 8192]
