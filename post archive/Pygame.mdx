@@ -1,14 +1,15 @@
 ---
-title: 'A quick Pygame Introduction'
-date: '2021-04-18'
+title: "A quick Pygame Introduction"
+date: "2021-04-18"
 ---
+
 
 # Overview
 Pygame and Python make the perfect pair when making games. Python has the simple syntax, and Pygame brings the libraries to make the process of game building simple. From graphics to collisions, Pygame has everything.
 
 Installing
 
-```
+```shell
 python -m pip install pygame
 ```
 
@@ -17,20 +18,20 @@ You can install Pygame with pip, it's just like any other module in python.
 # The Basics
 ## Initialising
 
-```py
+```python
 import pygame, sys, random
 ```
 
 Here we import all the modules we will need into Python. Python will then load these modules, allowing us to call functions from those modules.
 I have added sys as that will be used to handle the closing of the window cleanly, and random is just useful.
 
-```py
+```python
 pygame.init()
 ```
 
 This calls the init function in pygame, pygame will do all the things it needs to do.
 
-```py
+```python
 screen = pygame.display.set_mode((1000,500))
 pygame.display.set_caption("Game")
 ```
@@ -42,7 +43,7 @@ These two lines of code will create our window for the game to run in.
 
 ## Game Loop
 
-```py
+```python
 while True:
     #exit cleanly
     for event in pygame.event.get():
@@ -57,7 +58,7 @@ This is the main loop of the game, the code that is already there closes pygame 
 
 ### Background Colour
 
-```py
+```python
 screen.fill((0,255,180))
 ```
 
@@ -70,13 +71,13 @@ Pygame has many shapes to choose from, here are the most basic ones. If you want
 
 #### Rectangle
 First need to define the position of our rectangle
-```py
+```python
 Rectangle = pygame.Rect(200, 200, 100, 100)
 ```
 This will create a rectangle with the top left corner 200px from the top and left of the screen with a width and height of 50px
 If you try running this you won't see any shape as we have only designed the shape, we haven't drawn it yet.
 
-```py
+```python
 pygame.draw.rect(screen, (255,0,0), Rectangle, 3)
 ```
 This will draw the rectangle on the screen that we defined earlier, Red in colour, Our rectangle, with a border width of 3px
@@ -85,7 +86,7 @@ Be sure to put it after the background and before the update so you can see it!
 #### Circle
 Circles are slightly different, we don't define the top left point, we define the center and the radius.
 
-```py
+```python
 pygame.draw.circle(screen, (0,0,255), (350, 350), 50, 10)
 ```
 
@@ -95,7 +96,7 @@ The first argument is the surface to draw on, then the colour, Position, Radius,
 
 To draw a line we define the start and end positions
 
-```py
+```python
 pygame.draw.line(screen,(0,0,200),(250,250),(350,350),5)
 ```
 
