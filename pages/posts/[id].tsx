@@ -5,7 +5,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import React from 'react'
-import Layout from '../../components/Layout'
+import Layout from '../../components/layout'
 
 
 
