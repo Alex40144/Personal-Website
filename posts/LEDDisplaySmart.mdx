@@ -17,7 +17,7 @@ list = list.map(scaleTo5Bit) //scale data to 0-31
 ```
 Next I had to format the pixel data in the way that the FPGA was expecting. This involved re-ordering the pixels and combining them into 32-bit packets.
 
-```typescript {6}
+```typescript
 for (let i = 0; i < data.length / 2; i++) {
     let topPixel = data[i]
     let bottomPixel = data[i + 8192]
