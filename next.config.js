@@ -3,7 +3,7 @@ const fs = require('fs');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  output: 'export',
 };
 
 /** @type {import('rehype-pretty-code').Options} */
