@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 # we are using multi stage build process to keep the image size as small as possible
-FROM node:18-alpine
+FROM node:16-alpine
 # update and install latest dependencies, add dumb-init package
 # add a non root user
 RUN apk update && apk upgrade && apk add dumb-init && adduser -D nextuser 
