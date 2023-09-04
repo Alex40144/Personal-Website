@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 # Copy and install the dependencies for the project
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 # Copy all other project files to working directory
 COPY . .
 # Run the next build process and generate the artifacts
