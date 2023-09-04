@@ -33,4 +33,4 @@ EXPOSE 3000
 ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=production
 # start the app with dumb init to spawn the Node.js runtime process
 # with signal support
-CMD ["dumb-init","node","server.js"]
+CMD ["npm","run","start"]
