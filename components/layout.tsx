@@ -17,7 +17,7 @@ export default function Layout({
     const [Title, setTitle] = useState(props)
     return (
         <div>
-            <Script defer data-domain="alexpegg.uk" src="http://analytics.alexpegg.uk/js/script.js"></Script>
+            <Script defer data-domain="alexpegg.uk" src="https://analytics.alexpegg.uk/js/script.js"></Script>
 
             <Head>
                 <link rel="icon" href="/favicon.ico" />
