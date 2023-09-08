@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-
+import Script from 'next/script'
 export const siteTitle = 'Alex Pegg'
 
 export default function Layout({
@@ -17,6 +17,8 @@ export default function Layout({
     const [Title, setTitle] = useState(props)
     return (
         <div>
+            <Script defer data-domain="alexpegg.uk" src="http://analytics.alexpegg.uk/js/script.js"></Script>
+
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta
