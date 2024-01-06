@@ -41,15 +41,11 @@
 </url>
 <url>
   <loc>https://serialporttools.alexpegg.uk/</loc>
-  <priority>0.60</priority>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pirategame.alexpegg.uk/</loc>
-  <priority>0.60</priority>
-</url>
-<url>
-  <loc>https://live.alexpegg.uk/</loc>
-  <priority>0.60</priority>
+  <priority>0.80</priority>
 </url>
 
 </urlset>
