@@ -17,7 +17,6 @@ export default function PostCard({
                 <div className="flex w-1/2">
                     <div className="">
                         <h5 className="">{post.frontMatter.title}</h5>
-                        <p className="">{post.frontMatter.description}</p>
                         <p className="">
                             <small className="">{post.frontMatter.date}</small>
                         </p>

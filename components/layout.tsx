@@ -4,41 +4,30 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import Script from 'next/script'
 export const siteTitle = 'Alex Pegg'
+import { NextSeo } from 'next-seo';
 
 export default function Layout({
     children,
     home,
-    props
+    metadata
 }: {
     children: React.ReactNode
     home?: boolean
-    props: any
+    metadata: any
 }) {
-    const [Title, setTitle] = useState(props)
+    console.log(metadata)
     return (
         <div>
             <Script defer data-domain="alexpegg.uk" src="https://analytics.alexpegg.uk/js/script.js"></Script>
 
-            <Head>
-                <link rel="icon" href="/favicon.ico" />
-                <meta
-                    name="description"
-                    content="Learn how to build a personal website using Next.js"
-                />
-                <meta
-                    property="og:image"
-                    content={`https://og-image.vercel.app/${encodeURI(
-                        siteTitle
-                    )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-                />
-                <meta name="og:title" content={siteTitle} />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta http-equiv='content-language' content='en-gb' />
-            </Head>
+            <NextSeo
+                title={metadata.meta_title}
+                description={metadata.meta_description}
+            />
             <div className="prose prose-invert text-zinc-400 px-4 sm:px-6 md:px-8 mx-auto mt-12 mb-6">
                 <header>
                     <h1 className="py-8 text-4xl sm:text-5xl md:text-6xl font-black text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                        {Title}
+                        {siteTitle}
                     </h1>
                 </header>
                 <main>{children}</main>

@@ -9,7 +9,7 @@ import PostCard from '../components/postCard'
 
 export default function Home({ posts }: { posts: Array<Object> }) {
     return (
-        <Layout props={"Alex Pegg"} home>
+        <Layout metadata={{ meta_title: "Alex Pegg", meta_data: "", meta_description: "Alex's Blog about Software and Electronics" }} home>
             {posts.map((post, index) => (
                 <PostCard post={post} index={index} key={index} />
             ))}

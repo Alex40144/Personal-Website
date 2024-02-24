@@ -11,9 +11,9 @@ import Layout from '../../components/layout'
 
 const components = {}
 
-export default function PostPage({ frontMatter: { title, date }, mdxSource }: { frontMatter: { title: String, date: string }, mdxSource: any }) {
+export default function PostPage({ frontMatter: { title, date, description }, mdxSource }: { frontMatter: { title: String, date: string, description: string }, mdxSource: any }) {
   return (
-    <Layout props={title}>
+    <Layout metadata={{ meta_title: title, meta_data: date, meta_description: description }}>
       <div className="mt-4">
         <MDXRemote {...mdxSource} components={components} />
       </div>
