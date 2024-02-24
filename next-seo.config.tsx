@@ -11,8 +11,8 @@ const config: DefaultSeoProps = {
     images: [
       {
         url: 'https://alexpegg.uk/images/GraphImage.png',
-        width: 800,
-        height: 600,
+        width: 380,
+        height: 128,
         alt: 'Alex Pegg text',
       }
     ]
