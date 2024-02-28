@@ -1,51 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
   <loc>https://alexpegg.uk/</loc>
-  <priority>1.00</priority>
 </url>
 <url>
   <loc>https://alexpegg.uk/posts/LEDDisplaySmart</loc>
-  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://alexpegg.uk/posts/LEDDisplay</loc>
-  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://alexpegg.uk/posts/SerialPortTools</loc>
-  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://alexpegg.uk/posts/pirateGame</loc>
-  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://alexpegg.uk/posts/LEDclock</loc>
-  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://alexpegg.uk/posts/Scalextric-Project</loc>
-  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://alexpegg.uk/posts/SoftwareRenderer</loc>
-  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://serialporttools.alexpegg.uk/</loc>
-  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pirategame.alexpegg.uk/</loc>
-  <priority>0.80</priority>
 </url>
 
 </urlset>
